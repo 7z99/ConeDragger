@@ -1,3 +1,36 @@
+Example:
+
+```luau
+local coneDragger = require(game:GetService('ReplicatedStorage'):WaitForChild('ConeDragger'))
+
+local coneDraggerObject = coneDragger.new(Enum.NormalId.Left, workspace:WaitForChild('Part'))
+	:SetProperties('Dragging', { -- when the coneDragger is in the "Dragging" state, we set its transparency to 0 (full opacity)
+		Transparency = 0;
+	})
+	:SetProperties('Hovering', { -- when the coneDragger is in the "Hovering" state, we set its transparency to 0.25 (75% opacity)
+		Transparency = 0.25;
+	})
+	:SetProperties('Idle', { -- when the coneDragger is in the "Idle" state, we set its transparency to 0.5 (50% opacity)
+		Transparency = 0.5;
+	})
+
+-- we set the ConeHandleAdornment's CFrame
+coneDraggerObject.dragger.CFrame = CFrame.lookAlong(coneDraggerObject.direction * coneDraggerObject:GetBoundingBoxSize(), coneDraggerObject.direction)
+
+-- we listen to the coneDragger to start dragging and for the mouse position to move, so we update our PVInstance:
+coneDraggerObject.dragChanged:Connect(function(positionInWorldSpace: Vector3)
+	coneDraggerObject.adornee:PivotTo(CFrame.new(positionInWorldSpace) * coneDraggerObject.initialCFrame.Rotation)
+end)
+
+coneDraggerObject.dragStarted:Connect(function(currentCFrame: CFrame)
+	print('The ConeDragger started dragging.')
+end)
+
+coneDraggerObject.dragEnded:Connect(function(currentCFrame: CFrame)
+	print('The ConeDragger stopped dragging.')
+end)
+```
+
 ### Documentation
 **Constructor**
 ```
