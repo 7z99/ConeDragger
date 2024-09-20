@@ -150,7 +150,7 @@ Arguments:
 `adornee` -- the new adornee.
 
 ```luau
-[chainable] coneDragger:Destroy()
+coneDragger:Destroy()
 ```
 Destroys the ConeDragger.
 
