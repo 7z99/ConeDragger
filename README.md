@@ -34,8 +34,9 @@ end)
 ![demo](https://github.com/user-attachments/assets/c6c30a7f-8646-40f8-bebb-93a916c9e898)
 
 
-### Documentation
-**Constructor**
+## Documentation
+
+### Constructor
 ```luau
 coneDragger.new(axis: Enum.NormalId, adornee: PVInstance?): ConeDragger
 ```
